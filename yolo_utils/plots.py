@@ -19,7 +19,7 @@ import seaborn as sn
 import torch
 from PIL import Image, ImageDraw, ImageFont
 
-from utils import TryExcept, threaded
+from yolo_utils import TryExcept, threaded
 from yolo_utils.general import (CONFIG_DIR, FONT, LOGGER, check_font, check_requirements, clip_boxes, increment_path,
                                 is_ascii, xywh2xyxy, xyxy2xywh)
 from yolo_utils.metrics import fitness

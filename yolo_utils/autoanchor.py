@@ -10,7 +10,7 @@ import torch
 import yaml
 from tqdm import tqdm
 
-from utils import TryExcept
+from yolo_utils import TryExcept
 from yolo_utils.general import LOGGER, TQDM_BAR_FORMAT, colorstr
 
 PREFIX = colorstr('AutoAnchor: ')

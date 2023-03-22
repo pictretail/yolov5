@@ -54,8 +54,8 @@ def notebook_init(verbose=True):
     import os
     import shutil
 
-    from yolo_utilsgeneral import check_font, check_requirements, is_colab
-    from yolo_utilstorch_utils import select_device  # imports
+    from yolo_utils.general import check_font, check_requirements, is_colab
+    from yolo_utils.torch_utils import select_device  # imports
 
     check_font()
 

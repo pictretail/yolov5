@@ -15,22 +15,22 @@ Datasets:   https://github.com/ultralytics/yolov5/tree/master/data
 Tutorial:   https://github.com/ultralytics/yolov5/wiki/Train-Custom-Data
 """
 
-from yolo_utilstorch_utils import (EarlyStopping, ModelEMA, de_parallel, select_device, smart_DDP, smart_optimizer,
-                                   smart_resume, torch_distributed_zero_first)
-from yolo_utilssegment.plots import plot_images_and_masks, plot_results_with_masks
-from yolo_utilssegment.metrics import KEYS, fitness
-from yolo_utilssegment.loss import ComputeLoss
-from yolo_utilssegment.dataloaders import create_dataloader
-from yolo_utilsplots import plot_evolve, plot_labels
-from yolo_utilsloggers import GenericLogger
-from yolo_utilsgeneral import (LOGGER, TQDM_BAR_FORMAT, check_amp, check_dataset, check_file, check_git_info,
-                               check_git_status, check_img_size, check_requirements, check_suffix, check_yaml, colorstr,
-                               get_latest_run, increment_path, init_seeds, intersect_dicts, labels_to_class_weights,
-                               labels_to_image_weights, one_cycle, print_args, print_mutation, strip_optimizer, yaml_save)
-from yolo_utilsdownloads import attempt_download, is_url
-from yolo_utilscallbacks import Callbacks
-from yolo_utilsautobatch import check_train_batch_size
-from yolo_utilsautoanchor import check_anchors
+from yolo_utils.torch_utils import (EarlyStopping, ModelEMA, de_parallel, select_device, smart_DDP, smart_optimizer,
+                                    smart_resume, torch_distributed_zero_first)
+from yolo_utils.segment.plots import plot_images_and_masks, plot_results_with_masks
+from yolo_utils.segment.metrics import KEYS, fitness
+from yolo_utils.segment.loss import ComputeLoss
+from yolo_utils.segment.dataloaders import create_dataloader
+from yolo_utils.plots import plot_evolve, plot_labels
+from yolo_utils.loggers import GenericLogger
+from yolo_utils.general import (LOGGER, TQDM_BAR_FORMAT, check_amp, check_dataset, check_file, check_git_info,
+                                check_git_status, check_img_size, check_requirements, check_suffix, check_yaml, colorstr,
+                                get_latest_run, increment_path, init_seeds, intersect_dicts, labels_to_class_weights,
+                                labels_to_image_weights, one_cycle, print_args, print_mutation, strip_optimizer, yaml_save)
+from yolo_utils.downloads import attempt_download, is_url
+from yolo_utils.callbacks import Callbacks
+from yolo_utils.autobatch import check_train_batch_size
+from yolo_utils.autoanchor import check_anchors
 from models.yolo import SegmentationModel
 from models.experimental import attempt_load
 import segment.val as validate  # for end-of-epoch mAP

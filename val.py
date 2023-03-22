@@ -19,14 +19,14 @@ Usage - formats:
                               yolov5s_paddle_model       # PaddlePaddle
 """
 
-from yolo_utilstorch_utils import select_device, smart_inference_mode
-from yolo_utilsplots import output_to_target, plot_images, plot_val_study
-from yolo_utilsmetrics import ConfusionMatrix, ap_per_class, box_iou
-from yolo_utilsgeneral import (LOGGER, TQDM_BAR_FORMAT, Profile, check_dataset, check_img_size, check_requirements,
-                               check_yaml, coco80_to_coco91_class, colorstr, increment_path, non_max_suppression,
-                               print_args, scale_boxes, xywh2xyxy, xyxy2xywh)
-from yolo_utilsdataloaders import create_dataloader
-from yolo_utilscallbacks import Callbacks
+from yolo_utils.torch_utils import select_device, smart_inference_mode
+from yolo_utils.plots import output_to_target, plot_images, plot_val_study
+from yolo_utils.metrics import ConfusionMatrix, ap_per_class, box_iou
+from yolo_utils.general import (LOGGER, TQDM_BAR_FORMAT, Profile, check_dataset, check_img_size, check_requirements,
+                                check_yaml, coco80_to_coco91_class, colorstr, increment_path, non_max_suppression,
+                                print_args, scale_boxes, xywh2xyxy, xyxy2xywh)
+from yolo_utils.dataloaders import create_dataloader
+from yolo_utils.callbacks import Callbacks
 from models.common import DetectMultiBackend
 import argparse
 import json

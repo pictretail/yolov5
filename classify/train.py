@@ -13,13 +13,13 @@ YOLOv5-cls models:  --model yolov5n-cls.pt, yolov5s-cls.pt, yolov5m-cls.pt, yolo
 Torchvision models: --model resnet50, efficientnet_b0, etc. See https://pytorch.org/vision/stable/models.html
 """
 
-from yolo_utilstorch_utils import (ModelEMA, de_parallel, model_info, reshape_classifier_output, select_device, smart_DDP,
-                                   smart_optimizer, smartCrossEntropyLoss, torch_distributed_zero_first)
-from yolo_utilsplots import imshow_cls
-from yolo_utilsloggers import GenericLogger
-from yolo_utilsgeneral import (DATASETS_DIR, LOGGER, TQDM_BAR_FORMAT, WorkingDirectory, check_git_info, check_git_status,
-                               check_requirements, colorstr, download, increment_path, init_seeds, print_args, yaml_save)
-from yolo_utilsdataloaders import create_classification_dataloader
+from yolo_utils.torch_utils import (ModelEMA, de_parallel, model_info, reshape_classifier_output, select_device, smart_DDP,
+                                    smart_optimizer, smartCrossEntropyLoss, torch_distributed_zero_first)
+from yolo_utils.plots import imshow_cls
+from yolo_utils.loggers import GenericLogger
+from yolo_utils.general import (DATASETS_DIR, LOGGER, TQDM_BAR_FORMAT, WorkingDirectory, check_git_info, check_git_status,
+                                check_requirements, colorstr, download, increment_path, init_seeds, print_args, yaml_save)
+from yolo_utils.dataloaders import create_classification_dataloader
 from models.yolo import ClassificationModel, DetectionModel
 from models.experimental import attempt_load
 from classify import val as validate

@@ -20,10 +20,10 @@ Usage - formats:
                                        yolov5s-cls_paddle_model       # PaddlePaddle
 """
 
-from yolo_utilstorch_utils import select_device, smart_inference_mode
-from yolo_utilsgeneral import (LOGGER, TQDM_BAR_FORMAT, Profile, check_img_size, check_requirements, colorstr,
-                               increment_path, print_args)
-from yolo_utilsdataloaders import create_classification_dataloader
+from yolo_utils.torch_utils import select_device, smart_inference_mode
+from yolo_utils.general import (LOGGER, TQDM_BAR_FORMAT, Profile, check_img_size, check_requirements, colorstr,
+                                increment_path, print_args)
+from yolo_utils.dataloaders import create_classification_dataloader
 from models.common import DetectMultiBackend
 import argparse
 import os

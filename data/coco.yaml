@@ -99,7 +99,7 @@ names:
 
 # Download script/URL (optional)
 download: |
-  from yolo_utilsgeneral import download, Path
+  from yolo_utils.general import download, Path
 
 
   # Download labels

@@ -1,6 +1,6 @@
-from yolo_utilstorch_utils import select_device
-from yolo_utilsgeneral import increment_path
-from yolo_utilscallbacks import Callbacks
+from yolo_utils.torch_utils import select_device
+from yolo_utils.general import increment_path
+from yolo_utils.callbacks import Callbacks
 from train import train
 import argparse
 import json

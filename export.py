@@ -44,10 +44,10 @@ TensorFlow.js:
     $ npm start
 """
 
-from yolo_utilstorch_utils import select_device, smart_inference_mode
-from yolo_utilsgeneral import (LOGGER, Profile, check_dataset, check_img_size, check_requirements, check_version,
-                               check_yaml, colorstr, file_size, get_default_args, print_args, url2file, yaml_save)
-from yolo_utilsdataloaders import LoadImages
+from yolo_utils.torch_utils import select_device, smart_inference_mode
+from yolo_utils.general import (LOGGER, Profile, check_dataset, check_img_size, check_requirements, check_version,
+                                check_yaml, colorstr, file_size, get_default_args, print_args, url2file, yaml_save)
+from yolo_utils.dataloaders import LoadImages
 from models.yolo import ClassificationModel, Detect, DetectionModel, SegmentationModel
 from models.experimental import attempt_load
 import argparse

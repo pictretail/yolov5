@@ -10,8 +10,8 @@ Export:
     $ python export.py --weights yolov5s.pt --include saved_model pb tflite tfjs
 """
 
-from yolo_utilsgeneral import LOGGER, make_divisible, print_args
-from yolo_utilsactivations import SiLU
+from yolo_utils.general import LOGGER, make_divisible, print_args
+from yolo_utils.activations import SiLU
 from models.yolo import Detect, Segment
 from models.experimental import MixConv2d, attempt_load
 from models.common import (C3, SPP, SPPF, Bottleneck, BottleneckCSP, C3x, Concat, Conv, CrossConv, DWConv,

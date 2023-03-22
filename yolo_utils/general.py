@@ -37,8 +37,8 @@ import torchvision
 import yaml
 
 from utils import TryExcept, emojis
-from yolo_utilsdownloads import curl_download, gsutil_getsize
-from yolo_utilsmetrics import box_iou, fitness
+from yolo_utils.downloads import curl_download, gsutil_getsize
+from yolo_utils.metrics import box_iou, fitness
 
 FILE = Path(__file__).resolve()
 ROOT = FILE.parents[1]  # YOLOv5 root directory
@@ -999,7 +999,7 @@ def non_max_suppression(
     return output
 
 
-def strip_optimizer(f='best.pt', s=''):  # from yolo_utilsgeneral import *; strip_optimizer()
+def strip_optimizer(f='best.pt', s=''):  # from yolo_utils.general import *; strip_optimizer()
     # Strip optimizer from 'f' to finalize training, optionally save as 's'
     x = torch.load(f, map_location=torch.device('cpu'))
     if x.get('ema'):

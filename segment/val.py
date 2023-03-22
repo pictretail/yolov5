@@ -20,17 +20,17 @@ Usage - formats:
                                       yolov5s-seg_paddle_model       # PaddlePaddle
 """
 
-from yolo_utilstorch_utils import de_parallel, select_device, smart_inference_mode
-from yolo_utilssegment.plots import plot_images_and_masks
-from yolo_utilssegment.metrics import Metrics, ap_per_class_box_and_mask
-from yolo_utilssegment.general import mask_iou, process_mask, process_mask_native, scale_image
-from yolo_utilssegment.dataloaders import create_dataloader
-from yolo_utilsplots import output_to_target, plot_val_study
-from yolo_utilsmetrics import ConfusionMatrix, box_iou
-from yolo_utilsgeneral import (LOGGER, NUM_THREADS, TQDM_BAR_FORMAT, Profile, check_dataset, check_img_size,
-                               check_requirements, check_yaml, coco80_to_coco91_class, colorstr, increment_path,
-                               non_max_suppression, print_args, scale_boxes, xywh2xyxy, xyxy2xywh)
-from yolo_utilscallbacks import Callbacks
+from yolo_utils.torch_utils import de_parallel, select_device, smart_inference_mode
+from yolo_utils.segment.plots import plot_images_and_masks
+from yolo_utils.segment.metrics import Metrics, ap_per_class_box_and_mask
+from yolo_utils.segment.general import mask_iou, process_mask, process_mask_native, scale_image
+from yolo_utils.segment.dataloaders import create_dataloader
+from yolo_utils.plots import output_to_target, plot_val_study
+from yolo_utils.metrics import ConfusionMatrix, box_iou
+from yolo_utils.general import (LOGGER, NUM_THREADS, TQDM_BAR_FORMAT, Profile, check_dataset, check_img_size,
+                                check_requirements, check_yaml, coco80_to_coco91_class, colorstr, increment_path,
+                                non_max_suppression, print_args, scale_boxes, xywh2xyxy, xyxy2xywh)
+from yolo_utils.callbacks import Callbacks
 from models.yolo import SegmentationModel
 from models.common import DetectMultiBackend
 import torch.nn.functional as F

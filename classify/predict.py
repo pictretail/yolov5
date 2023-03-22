@@ -28,12 +28,12 @@ Usage - formats:
                                            yolov5s-cls_paddle_model       # PaddlePaddle
 """
 
-from yolo_utilstorch_utils import select_device, smart_inference_mode
-from yolo_utilsplots import Annotator
-from yolo_utilsgeneral import (LOGGER, Profile, check_file, check_img_size, check_imshow, check_requirements, colorstr, cv2,
-                               increment_path, print_args, strip_optimizer)
-from yolo_utilsdataloaders import IMG_FORMATS, VID_FORMATS, LoadImages, LoadScreenshots, LoadStreams
-from yolo_utilsaugmentations import classify_transforms
+from yolo_utils.torch_utils import select_device, smart_inference_mode
+from yolo_utils.plots import Annotator
+from yolo_utils.general import (LOGGER, Profile, check_file, check_img_size, check_imshow, check_requirements, colorstr, cv2,
+                                increment_path, print_args, strip_optimizer)
+from yolo_utils.dataloaders import IMG_FORMATS, VID_FORMATS, LoadImages, LoadScreenshots, LoadStreams
+from yolo_utils.augmentations import classify_transforms
 from models.common import DetectMultiBackend
 import argparse
 import os

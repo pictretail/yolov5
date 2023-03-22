@@ -1,6 +1,6 @@
-from yolo_utilsmetrics import box_iou
-from yolo_utilsgeneral import check_dataset, scale_boxes, xywh2xyxy
-from yolo_utilsdataloaders import img2label_paths
+from yolo_utils.metrics import box_iou
+from yolo_utils.general import check_dataset, scale_boxes, xywh2xyxy
+from yolo_utils.dataloaders import img2label_paths
 import yaml
 import torchvision.transforms as T
 import torch

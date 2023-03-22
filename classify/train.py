@@ -13,6 +13,16 @@ YOLOv5-cls models:  --model yolov5n-cls.pt, yolov5s-cls.pt, yolov5m-cls.pt, yolo
 Torchvision models: --model resnet50, efficientnet_b0, etc. See https://pytorch.org/vision/stable/models.html
 """
 
+from yolo_utilstorch_utils import (ModelEMA, de_parallel, model_info, reshape_classifier_output, select_device, smart_DDP,
+                                   smart_optimizer, smartCrossEntropyLoss, torch_distributed_zero_first)
+from yolo_utilsplots import imshow_cls
+from yolo_utilsloggers import GenericLogger
+from yolo_utilsgeneral import (DATASETS_DIR, LOGGER, TQDM_BAR_FORMAT, WorkingDirectory, check_git_info, check_git_status,
+                               check_requirements, colorstr, download, increment_path, init_seeds, print_args, yaml_save)
+from yolo_utilsdataloaders import create_classification_dataloader
+from models.yolo import ClassificationModel, DetectionModel
+from models.experimental import attempt_load
+from classify import val as validate
 import argparse
 import os
 import subprocess
@@ -36,16 +46,6 @@ if str(ROOT) not in sys.path:
     sys.path.append(str(ROOT))  # add ROOT to PATH
 ROOT = Path(os.path.relpath(ROOT, Path.cwd()))  # relative
 
-from classify import val as validate
-from models.experimental import attempt_load
-from models.yolo import ClassificationModel, DetectionModel
-from utils.dataloaders import create_classification_dataloader
-from utils.general import (DATASETS_DIR, LOGGER, TQDM_BAR_FORMAT, WorkingDirectory, check_git_info, check_git_status,
-                           check_requirements, colorstr, download, increment_path, init_seeds, print_args, yaml_save)
-from utils.loggers import GenericLogger
-from utils.plots import imshow_cls
-from utils.torch_utils import (ModelEMA, de_parallel, model_info, reshape_classifier_output, select_device, smart_DDP,
-                               smart_optimizer, smartCrossEntropyLoss, torch_distributed_zero_first)
 
 LOCAL_RANK = int(os.getenv('LOCAL_RANK', -1))  # https://pytorch.org/docs/stable/elastic/run.html
 RANK = int(os.getenv('RANK', -1))
@@ -145,7 +145,7 @@ def train(opt, device):
     # Scheduler
     lrf = 0.01  # final lr (fraction of lr0)
     # lf = lambda x: ((1 + math.cos(x * math.pi / epochs)) / 2) * (1 - lrf) + lrf  # cosine
-    lf = lambda x: (1 - x / epochs) * (1 - lrf) + lrf  # linear
+    def lf(x): return (1 - x / epochs) * (1 - lrf) + lrf  # linear
     scheduler = lr_scheduler.LambdaLR(optimizer, lr_lambda=lf)
     # scheduler = lr_scheduler.OneCycleLR(optimizer, max_lr=lr0, total_steps=epochs, pct_start=0.1,
     #                                    final_div_factor=1 / 25 / lrf)

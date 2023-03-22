@@ -20,6 +20,20 @@ Usage - formats:
                                       yolov5s-seg_paddle_model       # PaddlePaddle
 """
 
+from yolo_utilstorch_utils import de_parallel, select_device, smart_inference_mode
+from yolo_utilssegment.plots import plot_images_and_masks
+from yolo_utilssegment.metrics import Metrics, ap_per_class_box_and_mask
+from yolo_utilssegment.general import mask_iou, process_mask, process_mask_native, scale_image
+from yolo_utilssegment.dataloaders import create_dataloader
+from yolo_utilsplots import output_to_target, plot_val_study
+from yolo_utilsmetrics import ConfusionMatrix, box_iou
+from yolo_utilsgeneral import (LOGGER, NUM_THREADS, TQDM_BAR_FORMAT, Profile, check_dataset, check_img_size,
+                               check_requirements, check_yaml, coco80_to_coco91_class, colorstr, increment_path,
+                               non_max_suppression, print_args, scale_boxes, xywh2xyxy, xyxy2xywh)
+from yolo_utilscallbacks import Callbacks
+from models.yolo import SegmentationModel
+from models.common import DetectMultiBackend
+import torch.nn.functional as F
 import argparse
 import json
 import os
@@ -37,22 +51,6 @@ ROOT = FILE.parents[1]  # YOLOv5 root directory
 if str(ROOT) not in sys.path:
     sys.path.append(str(ROOT))  # add ROOT to PATH
 ROOT = Path(os.path.relpath(ROOT, Path.cwd()))  # relative
-
-import torch.nn.functional as F
-
-from models.common import DetectMultiBackend
-from models.yolo import SegmentationModel
-from utils.callbacks import Callbacks
-from utils.general import (LOGGER, NUM_THREADS, TQDM_BAR_FORMAT, Profile, check_dataset, check_img_size,
-                           check_requirements, check_yaml, coco80_to_coco91_class, colorstr, increment_path,
-                           non_max_suppression, print_args, scale_boxes, xywh2xyxy, xyxy2xywh)
-from utils.metrics import ConfusionMatrix, box_iou
-from utils.plots import output_to_target, plot_val_study
-from utils.segment.dataloaders import create_dataloader
-from utils.segment.general import mask_iou, process_mask, process_mask_native, scale_image
-from utils.segment.metrics import Metrics, ap_per_class_box_and_mask
-from utils.segment.plots import plot_images_and_masks
-from utils.torch_utils import de_parallel, select_device, smart_inference_mode
 
 
 def save_one_txt(predn, save_conf, shape, file):
